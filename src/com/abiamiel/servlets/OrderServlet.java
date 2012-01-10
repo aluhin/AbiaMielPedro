@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -22,6 +23,7 @@ import com.abiamiel.model.Product;
 public class OrderServlet extends GenericServlet {
 
 	private static final long serialVersionUID = 1L;
+	static Logger logger = Logger.getLogger(OrderServlet.class);
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -35,35 +37,25 @@ public class OrderServlet extends GenericServlet {
 		String stringOrderId = request.getParameter("id");
 		if (stringOrderId == null || stringOrderId == "") {
 			sendError(request, response, new InfoBean("Error al obtener pedido", "No se recibio el numero de pedido a obtener"));
+			logger.debug("id null or empty");
 		    return;
 		}
 		int orderId = Integer.parseInt(stringOrderId);
 		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		
-		MyOrder order = null;
-		boolean isConnectionPerformed = false;
-		int tries = 0;
+		if (!HibernateUtil.startTransaction(session)) {
+			sendTooManyUserConectionsError(request, response);
+		    logger.warn("Too many connections error when trying to create a transaction for fetching an order info");
+		}
 		
-		do {
-			try {
-				tries++;
-				session.beginTransaction();
 		
-				Criteria criteria = session.createCriteria(MyOrder.class).add(Restrictions.eq("id", orderId));
-				
-				if (!requiresAdmin)
-					criteria.add(Restrictions.eq("customer", customer));
-					
-				order = (MyOrder)criteria.uniqueResult();
-				
-				isConnectionPerformed = true;
-			} catch (HibernateException e) {
-				// TODO: this is wrong: createQuery(), uniqueResult() and commit() may also throw HibernateException and we cannot retry --> create specific retry catch for .beginTransaction()
-				System.out.println("Retrying creating connection: " + e + " TRY: " + tries);
-			}
-		} while (!isConnectionPerformed);
+		Criteria criteria = session.createCriteria(MyOrder.class).add(Restrictions.eq("id", orderId));
 		
+		if (!requiresAdmin)
+			criteria.add(Restrictions.eq("customer", customer));
+			
+		MyOrder order = (MyOrder)criteria.uniqueResult();
 		MyOrder copyOrder = null;
 		
 		if (order != null) {
@@ -85,6 +77,7 @@ public class OrderServlet extends GenericServlet {
 		
 		if (order == null) {
 			sendError(request, response, new InfoBean("Error al obtener pedido", "El numero de pedido " + orderId + " no existe en nuestra base de datos"));
+			logger.debug(String.format("The id(%d) of the order received does not correpond to any order in the db", orderId));
 		    return;
 		}
 	

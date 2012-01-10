@@ -59,7 +59,7 @@
 				<div id="links">
 					<ul>
 						<li><a href="orders">Manejar mis pedidos</a></li>
-						<li><a href="products">Realizar un pedido nuevo</a></li>
+						<li><a href="neworder">Realizar un pedido nuevo</a></li>
 						<li><a href="login">Volver al menu Mi Cuenta</a></li>
 					</ul>
 				</div>

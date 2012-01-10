@@ -59,15 +59,6 @@
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>ProductsServlet</servlet-name>
-		<servlet-class>com.abiamiel.servlets.ProductsServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ProductsServlet</servlet-name>
-		<url-pattern>/products</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
 		<servlet-name>NewOrderServlet</servlet-name>
 		<servlet-class>com.abiamiel.servlets.NewOrderServlet</servlet-class>
 	</servlet>

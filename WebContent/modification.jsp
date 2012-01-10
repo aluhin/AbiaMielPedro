@@ -27,20 +27,55 @@
 					</p>
 				</div>
 			</div>
-			<div class="floating-box">
+			<div class="content">
 				<form name="input" action="modification" method="post">
-					Nombre de usuario: <input type="text" name="nick" readonly="readonly" value="<jsp:getProperty name = "customer" property = "nick" />"/>
-					<br> Contrasenia: <input type="password" name="password" required="required" value="<jsp:getProperty name = "customer" property = "password" />"/>
-					<br> Repita la contrasenia: <input type="password" name="repited_password" required="required" value="<jsp:getProperty name = "customer" property = "password" />"/>
-					<br> Email: <input type="email" name="email" readonly="readonly" value="<jsp:getProperty name = "customer" property = "email" />"/>
-					<br>
-					<br> Nombre: <input type="text" name="first_name" value="<jsp:getProperty name = "customer" property = "firstName" />"/>
-					<br> Apellidos: <input type="text" name="last_name" value="<jsp:getProperty name = "customer" property = "lastName" />"/>
-					<br> Direccion: <input type="text" name="address" value="<jsp:getProperty name = "customer" property = "address" />"/>
-					<br> Telefono de contacto: <input type="tel" name="telephone" value="<jsp:getProperty name = "customer" property = "telephone" />"/>
-					<input type="submit" value="Modificar" />
+					<table border="0">
+					<tr>
+						<td>Nombre de usuario:</td>
+						<td><input type="text" name="nick" readonly="readonly" value="<jsp:getProperty name = "customer" property = "nick" />"/></td>
+					</tr>
+					<tr>
+						<td>Contrasenia:</td>
+						<td><input type="password" name="password" required="required" value="<jsp:getProperty name = "customer" property = "password" />"/></td>
+					</tr>
+					<tr>
+						<td>Repita la contrasenia:</td>
+						<td><input type="password" name="repited_password" required="required" value="<jsp:getProperty name = "customer" property = "password" />"/></td>
+					</tr>
+					<tr>
+						<td>Email:</td>
+						<td><input type="email" name="email" readonly="readonly" value="<jsp:getProperty name = "customer" property = "email" />"/></td>
+					</tr>
+					<tr>
+						<td>Nombre:</td>
+						<td><input type="text" name="first_name" value="<jsp:getProperty name = "customer" property = "firstName" />"/></td>
+					</tr>
+					<tr>
+						<td>Apellidos:</td>
+						<td><input type="text" name="last_name" value="<jsp:getProperty name = "customer" property = "lastName" />"/></td>
+					</tr>
+					<tr>
+						<td>Direccion:</td>
+						<td><input type="text" name="address" value="<jsp:getProperty name = "customer" property = "address" />"/></td>
+					</tr>
+					<tr>
+						<td>Telefono de contacto:</td>
+						<td><input type="tel" name="telephone" value="<jsp:getProperty name = "customer" property = "telephone" />"/></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="submit" value="Modificar" /></td>
+					</tr>
+					</table>
 				</form>
 			</div>
+			<br></br>
+			<div id="links">
+				<ul>
+					<li><a href="login">Volver al menu Mi Cuenta</a></li>
+				</ul>
+			</div>
+			
 		</div>
 		<!-- end #content -->
 		<div id="sidebar">

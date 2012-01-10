@@ -30,39 +30,51 @@
 					<p>A continuacion seleccione los productos y cantidades de ellos que conformaran su pedido. Al final puede introducir los comentarios que desee: </p>
 
 					<form name="input" action="neworder" method="post">
-						
-						<label class="label" for="title">Titulo: </label>
-						<input type="text" name= "title" required="required"/>
-						
 						<table border="0">
-						<% for (int i = 0; i < Constants.NUMBER_MAX_ORDERS; i++) { %>
-						<tr>
-						<td>
-							<label class="label" for="product<%= i%>">Producto <%= i%>:</label>
-		        		<select name="product<%= i%>">
-		        			<option value="none" selected="selected">Ningun Producto</option>
-		        			<% for (Object productObject : products) {
-		        				Product product = (Product) productObject;
-		        			%>
-		             		<option value="<%= product.getId() %>"><%= product.getName() %></option>
-		                	<% } %>
-		        		</select>
-		        		</td>
-						<td>
-						<label class="label" for="quantity<%= i%>">Cantidad: </label>
-						<input type="number" name= "quantity<%= i%>" value="0" min="0" max="100"/>						
-						</td>
-						</tr>
-						<% } %>
+							<tr>
+								<td><label class="label" for="title">Titulo: </label></td>
+								<td><input type="text" name= "title" required="required"/></td>
+							</tr>
+							<tr>
+							<table border="0">
+								<% for (int i = 0; i < Constants.NUMBER_MAX_ORDERS; i++) { %>
+								<tr>
+								<td>
+									<label class="label" for="product<%= i%>">Producto <%= i%>:</label>
+				        		<select name="product<%= i%>">
+				        			<option value="none" selected="selected">Ningun Producto</option>
+				        			<% for (Object productObject : products) {
+				        				Product product = (Product) productObject;
+				        			%>
+				             		<option value="<%= product.getId() %>"><%= product.getName() %></option>
+				                	<% } %>
+				        		</select>
+				        		</td>
+								<td>
+								<label class="label" for="quantity<%= i%>">Cantidad: </label>
+								<input type="number" name= "quantity<%= i%>" value="0" min="0" max="100"/>						
+								</td>
+								</tr>
+								<% } %>
+							</table>
+							</tr>
+							<tr>
+							<td>
+								<label class="label" for="comments">Comentarios:</label> 
+							</td>
+							<td>
+							<textarea cols="40" rows="3" id="comments" name="comments" ></textarea>
+							</td>
+							</tr>
+							<tr>
+							<td>
+							<input type="submit" value="Ordenar Pedido" />
+							</td>
+							</tr>
 						</table>
-						<br>
-						<label class="label" for="comments">Comentarios: </label> 
-						<textarea cols="40" rows="3" id="comments" name="comments" ></textarea>
-						
-						<input type="submit" value="Ordenar Pedido" />
 					</form>
 				</div>
-				<br>
+				<br/>
 				<div id="links">
 					<ul>
 						<li><a href="orders">Mis pedidos</a></li>

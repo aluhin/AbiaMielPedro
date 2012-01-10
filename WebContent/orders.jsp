@@ -33,8 +33,8 @@
 				<div>
 					<table border="1">
 						<tr>
-							<th>Titulo</th>
-							<th>Fecha</th>
+							<th><a href="orders?sort=title">Titulo</a></th>
+							<th><a href="orders?sort=ordered_at">Fecha</a></th>
 						</tr>
 						
 						<% for (Object myOrderObject : orders) { 
@@ -51,7 +51,7 @@
 
 				<div id="links">
 					<ul>
-						<li><a href="products">Realizar un pedido nuevo</a></li>
+						<li><a href="neworder">Realizar un pedido nuevo</a></li>
 						<li><a href="login">Volver al menu Mi Cuenta</a></li>
 					</ul>
 				</div>

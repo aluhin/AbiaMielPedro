@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import com.abiamiel.model.Customer;
 import com.abiamiel.model.InfoBean;
@@ -111,9 +112,8 @@ public class RegistrationServlet extends GenericServlet {
 				tries++;
 				session.beginTransaction();
 		
-				customer = (Customer) session
-						.createQuery("from Customer where nick = ?")
-						.setString(0, nick)
+				customer = (Customer) session.createCriteria(Customer.class)
+						.add(Restrictions.eq("nick", nick))
 						.uniqueResult();
 				
 				session.getTransaction().commit();
@@ -140,9 +140,8 @@ public class RegistrationServlet extends GenericServlet {
 				tries++;
 				session.beginTransaction();
 		
-				customer = (Customer) session
-						.createQuery("from Customer where email = ?")
-						.setString(0, email)
+				customer = (Customer) session.createCriteria(Customer.class)
+						.add(Restrictions.eq("email", email))
 						.uniqueResult();
 				
 				session.getTransaction().commit();

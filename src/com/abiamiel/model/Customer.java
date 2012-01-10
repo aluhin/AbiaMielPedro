@@ -85,6 +85,10 @@ public class Customer {
 		this.orders = orders;
 	}
 	public String toString() {
+		return String.format("id:%d nick:%s password:%s email%s firstname:%s lastname:%s address:%s telephone:%s active:%s admin:%s"
+				, id, nick, password,email,firstName, lastName, address, telephone, active, admin);
+	}
+	public String getFullName() {
 		return firstName + " " + lastName;
 	}
 }

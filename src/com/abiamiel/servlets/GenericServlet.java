@@ -9,17 +9,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.abiamiel.model.Customer;
 import com.abiamiel.model.InfoBean;
 
 public class GenericServlet extends HttpServlet {
-
-	private static final long serialVersionUID = 1L;
 	
+	private static final long serialVersionUID = 1L;
+	static Logger logger = Logger.getLogger(GenericServlet.class);
+
 	protected void sendError(HttpServletRequest request, HttpServletResponse response, InfoBean info) throws IOException, ServletException {
 		request.setAttribute("errorBean", info);
 		RequestDispatcher dispatcher = request.getRequestDispatcher(Constants.PAGE_ERROR);
 		dispatcher.forward(request, response);
+		logger.info("Showing info to the customer: " + info);
+	}
+
+	protected void sendTooManyUserConectionsError(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+		sendError(request, response, new InfoBean("Error interno", "Demasiados clientes estan accediendo a la base de datos al mismo momento. Por favor, intentelo de nuevo en unos minutos"));
 	}
 
 	protected Customer loggedCustomer(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -35,10 +43,12 @@ public class GenericServlet extends HttpServlet {
 			customer  = (Customer) httpSession.getAttribute("customer");
 		
 		if (customer == null) {
-			sendError(request, response, new InfoBean("Error", "Para realizar esa accion debe de loguearse en el sistema primero. Para ello, pinche en el enlace de la derecha \"Mi cuenta\""));
+			logger.info("Unknown user trying to do something without beeing logged");
+			sendError(request, response, new InfoBean("Error de autorizacion", "Para realizar esa accion debe de loguearse en el sistema primero. Para ello, pinche en el enlace de la derecha \"Mi cuenta\""));
 		}
 		else if (requiresAdmin && !customer.isAdmin()) {
-			sendError(request, response, new InfoBean("Error", "Para realizar esa accion debe de loguearse en el sistema con privilegios de administrador"));
+			logger.info(String.format("User %s trying to enter admin functionality without admin privileges",customer.getId()));
+			sendError(request, response, new InfoBean("Error de autorizacion", "Para realizar esa accion debe de loguearse en el sistema con privilegios de administrador"));
 			customer = null;
 		}
 		return customer;

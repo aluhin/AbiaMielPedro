@@ -33,9 +33,9 @@
 				<div>
 					<table border="1">
 						<tr>
-							<th><a href="adminorders?sort=title">Titulo</a></th>
-							<th><a href="adminorders?sort=ordered_at">Fecha</a></th>
-							<th><a href="adminorders?sort=customer">Cliente</a></th>
+							<th><a href="orders?sort=title&admin">Titulo</a></th>
+							<th><a href="orders?sort=ordered_at&admin">Fecha</a></th>
+							<th><a href="orders?sort=customer&admin">Cliente</a></th>
 						</tr>
 						
 						<% for (Object myOrderObject : orders) { 
@@ -44,7 +44,7 @@
 						<tr>
 							<td><a href="order?id=<%= myOrder.getId() %>&admin"><%= myOrder.getTitle() %></a></td>
 							<td><%= myOrder.getOrderedAt() %></td>
-							<td><%= myOrder.getCustomer() %></td>
+							<td><%= myOrder.getCustomer().getFullName() %></td>
 						</tr>
 						<% } %>
 						

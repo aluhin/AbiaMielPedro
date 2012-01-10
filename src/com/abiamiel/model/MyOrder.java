@@ -60,4 +60,8 @@ public class MyOrder {
 	public String getFormatedOrderedAt() {
 		return DateFormat.getDateTimeInstance().format(orderedAt);
 	}
+	
+	public String toString() {
+		return String.format("%d %s %s %s", id, title, orderedAt, comments);
+	}
 }

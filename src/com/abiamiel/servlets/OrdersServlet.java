@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -23,6 +24,7 @@ import com.abiamiel.model.MyOrder;
 public class OrdersServlet extends GenericServlet {
 
 	private static final long serialVersionUID = 1L;
+	static Logger logger = Logger.getLogger(OrderServlet.class);
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

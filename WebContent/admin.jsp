@@ -35,11 +35,11 @@
 				<div id="links">
 					<ul>
 						<li><a href="orders?admin">Gestionar pedidos</a></li>
-						<li><a href="orders">Gestionar consultas</a></li>
-						<li><a href="products">Crear una cuenta nueva</a></li>
-						<li><a href="modification.jsp">Consultar o modificar mis datos personales</a></li>
-						<li><a href="login?end=true">Finalizar sesion como usuario <jsp:getProperty name = "customer" property = "nick" /></a></li>
-						<li><a href="">Darme de baja en el sistema</a></li>
+						<li><a href="orders">Gestionar consultas (Sin hacer)</a></li>
+						<li><a href="neworder">Crear una cuenta nueva (Sin hacer)</a></li>
+						<li><a href="modification.jsp">Consultar o modificar mis datos personales (Sin hacer)</a></li>
+						<li><a href="login?end=true">Finalizar sesion como administrador <jsp:getProperty name = "customer" property = "nick" /></a></li>
+						<li><a href="">Darme de baja en el sistema (Sin hacer)</a></li>
 					</ul>
 				</div>
 				
