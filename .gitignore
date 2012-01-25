@@ -1,3 +1,6 @@
 *.class
 .classpath
 build/
+.DS_Store
+src/app.properties
+src/hibernate.properties

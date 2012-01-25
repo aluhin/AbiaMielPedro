@@ -93,8 +93,8 @@ public class RegistrationServlet extends GenericServlet {
 		
 		String emailContent = "Haz click en el siguiente link para activar tu cuenta: \n\n http://" + Constants.HOSTNAME + ":" + Constants.PORT + Constants.CONTEXT_ROOT + Constants.SERVLET_ACTIVATION + "?id=" + newCustomer.getId();
 		
-		//Utils.sendEmail(Constants.REGISTRATION_FROM_EMAIL, Constants.REGISTRATION_FROM_PASSWORD, new String[]{ email }, "Abia Miel Pedro - Proceso de activacion de cuenta", emailContent);
-		System.out.println(emailContent);
+		Utils.sendEmail(Constants.REGISTRATION_FROM_EMAIL, Constants.REGISTRATION_FROM_PASSWORD, new String[]{ email }, "Abia Miel Pedro - Proceso de activacion de cuenta", emailContent);
+		//System.out.println(emailContent);
 		
 		sendError(request, response, new InfoBean("Registro Completado!", "Para completar el proceso de registro, necesita activar su cuenta. Para ello, hemos enviado un email a la cuenta de correo electronico que nos ha facilitado. Para activar su cuenta, abra su correo y haga click en el enlace que contiene"));
 	}
